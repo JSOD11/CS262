@@ -1,0 +1,56 @@
+// template based off of the template used by Palis' group
+
+syntax = "proto3";
+
+service ChatApp {
+    rpc CreateAccount (CreateAccountRequest) returns (CreateAccountResponse) {}
+    rpc ListAccounts (ListAccountsRequest) returns (ListAccountsResponse) {}
+    rpc SendMessage (SendMessageRequest) returns (SendMessageResponse) {}
+    rpc DeliverMessages (DeliverRequest) returns (DeliverResponse) {}
+    rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse) {}
+}
+
+message CreateAccountRequest {
+    string username = 1;
+}
+
+message CreateAccountResponse {
+    bool success = 1;
+    string errorMessage = 2;
+}
+
+message ListAccountsRequest {
+    
+}
+
+message ListAccountsResponse {
+    repeated CreateAccountRequest usernames = 1;
+}
+
+message SendMessageRequest {
+    string message = 1;
+    string froUser = 2;
+    string toUser = 3;
+}
+
+message SendMessageResponse {
+    bool success = 1;
+    string errorMessage = 2;
+}
+
+message DeliverRequest {
+    string recipient = 1;
+}
+
+message DeliverResponse {
+    repeated string messages = 1;
+}
+
+message DeleteAccountRequest {
+    string username = 1;
+}
+
+message DeleteAccountResponse {
+    bool success = 1;
+    string error = 2;
+}
